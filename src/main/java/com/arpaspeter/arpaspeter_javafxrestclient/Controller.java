@@ -1,14 +1,26 @@
 package com.arpaspeter.arpaspeter_javafxrestclient;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
-public class Controller {
-    @FXML
-    private Label welcomeText;
+import javafx.scene.control.Alert;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+public abstract class Controller {
+
+    protected void error(String headerText) {
+        error(headerText, "");
+    }
+
+    protected void error(String headerText, String contentText) {
+        alert(Alert.AlertType.ERROR, headerText, contentText);
+    }
+
+    protected void warning(String headerText) {
+        alert(Alert.AlertType.WARNING, headerText, "Warning");
+    }
+
+    protected void alert(Alert.AlertType alertType, String headerText, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 }
